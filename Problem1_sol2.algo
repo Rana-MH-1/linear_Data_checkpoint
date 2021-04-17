@@ -1,0 +1,49 @@
+//----------------Solution 2 for problem 1: sum_of_all_distinct_elements using HashTable------------------
+ALGORITHM sum_of_all_distinct_elements
+VAR
+    htab: HASH_TABLE<INTEGER,INTEGER>
+    i,j,count: INTEGER;
+    set1: ARRAY_OF INTEGER[n1];
+    set2: ARRAY_OF INTEGER[n2];
+    sum:INTEGER:=0;
+
+BEGIN
+write("type set1");
+read(set1);
+write("type set2");
+read(set2);
+
+//insert set1
+FOR i FROM 0 TO set1.length-1 STEP 1 DO
+        IF (htab.lookup(set1[i])= TRUE) THEN
+            count:= htab.get(set1[i]);
+            htab.insert(set1[i],count+1);
+        ELSE
+            htab.insert(set1[i],1);
+        END_IF
+    END_FOR
+
+//insert set2
+    FOR i FROM 0 TO set2.length-1 STEP 1 DO
+        IF (htab.lookup(set2[i])= TRUE) THEN
+            count:= htab.get(set2[i]);
+            htab.insert(set2[i],count+1);
+        ELSE
+            htab.insert(set2[i],1);
+        END_IF
+    END_FOR
+
+    FOR i FROM 0 TO set1.length-1 STEP 1 DO
+        IF ( htab.get(set1[i]) = 1) THEN
+            sum := sum + set1[i];
+        END_IF 
+    END_FOR
+
+    FOR i FROM 0 TO set2.length-1 STEP 1 DO
+        IF ( htab.get(set2[i]) = 1) THEN
+            sum := sum +set2[i];
+        END_IF 
+    END_FOR
+    
+    Write(sum);
+END

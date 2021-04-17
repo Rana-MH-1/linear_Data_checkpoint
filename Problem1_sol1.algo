@@ -1,0 +1,44 @@
+//------------Solution 1 for problem 1: sum_of_all_distinct_elements using ARRAY--------------------------
+ALGORITHM sum_of_all_distinct_elements
+VAR
+    i,j:INTEGER;
+    set1: ARRAY_OF INTEGER[n1];
+    set2: ARRAY_OF INTEGER[n2];
+    n1,n2:INTEGER;
+    sum:INTEGER:=0;
+BEGIN
+write("Type the set1");
+read(set1);
+write("type the set2");
+read(set2);
+  FOR i FROM 0 to set1.length-1 DO
+    j:=0;
+    REPEAT
+        IF (set1[i] <> set2[j]) THEN
+            j:= j+1;
+        END_IF
+      UNTIL (set1[i] = set2[j] OR j>= set2.length-1)
+
+    IF (j = set2.length-1) THEN
+      sum:= sum+1;
+    END_IF
+  END_FOR
+
+  FOR i FROM 0 to set2.length-1 DO
+    j:=0;
+    REPEAT
+      IF (set2[i] <> set1[j]) THEN
+        j:= j+1;
+      END_IF
+    UNTIL (set2[i] = set[j] OR j>= set1.length-1)
+
+    IF (j = set1.length-1) THEN
+      sum:= sum + 1;
+    END_IF
+  END_FOR
+write(sum);
+END
+
+
+
+

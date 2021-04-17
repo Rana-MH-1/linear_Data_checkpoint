@@ -1,0 +1,33 @@
+// ----------------------- Solution 2 for problem 2 using HASH TABLE:-------------------------------------
+ALGORITHM Sum_of_overlapping_elements
+VAR
+    htab: HASH_TABLE<INTEGER,INTEGER>
+    i,j,n1: INTEGER;
+    arr1,arr2: ARRAY_OF INTEGER[n1];
+    sum,count:INTEGER:=0;
+BEGIN
+write("type arr1");
+read(arr1);
+write("type arr2");
+read(arr2);
+//insert arr1
+FOR i FROM 0 TO arr1.length -1 STEP 1  DO
+    FOR j FROM 0 TO arr2.length-1 STEP 1 DO
+        IF (htab.lookup(arr1[i] = arr2[j])= TRUE) THEN
+            count:= htab.get(arr1[i]);
+            htab.insert(arr1[i],count+1);
+        ELSE 
+            htab.insert(arr1[i],1);
+        END_IF
+    END_FOR
+END_FOR
+
+//sum overlapping elements 
+FOR i FROM 0 TO arr1.length -1 STEP 1  DO 
+    IF (htab.get(arr1[i])= count+1) THEN
+        sum:= sum + arr1[i];
+    END_IF
+END_FOR
+sum:= sum*2;
+write(sum);
+END
